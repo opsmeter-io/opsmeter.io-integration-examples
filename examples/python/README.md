@@ -4,6 +4,7 @@ Run:
 
 ```bash
 export OPSMETER_API_KEY="<YOUR_KEY>"
+export OPSMETER_API_BASE_URL="https://api.opsmeter.io"
 python3 examples/python/main.py --provider openai --model gpt-4o-mini --retry
 ```
 

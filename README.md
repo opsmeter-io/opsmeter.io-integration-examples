@@ -21,6 +21,7 @@ This repo is optimized for teams implementing **LLM cost tracking**, **OpenAI us
 git clone https://github.com/opsmeter/opsmeter-integration-examples.git
 cd opsmeter-integration-examples
 export OPSMETER_API_KEY="<YOUR_WORKSPACE_PRIMARY_API_KEY>"
+export OPSMETER_API_BASE_URL="https://api.opsmeter.io"
 ```
 
 2) Run one stack (Node shown below):
@@ -45,6 +46,8 @@ Retry with same externalRequestId sent.
 > `--retry` uses the **same** `externalRequestId` to demonstrate retry-safe behavior.
 
 ## Payload contract (shared)
+
+Canonical ingest endpoint: `https://api.opsmeter.io/v1/ingest/llm-request`
 
 All examples send this same shape:
 
@@ -135,3 +138,12 @@ Target URL:
 ## Release
 
 Current bootstrap release target: **v0.1.0** (see [CHANGELOG](./CHANGELOG.md)).
+
+## SEO and discoverability notes
+
+Primary terms covered in this repository:
+- Opsmeter integration examples
+- LLM cost tracking integration
+- OpenAI usage monitoring
+- Anthropic telemetry integration
+- AI inference cost control
