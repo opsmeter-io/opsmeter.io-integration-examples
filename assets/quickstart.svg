@@ -1,0 +1,22 @@
+<svg width="1200" height="520" viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Quickstart output preview">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#111d33"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="520" fill="#e2e8f0"/>
+  <rect x="40" y="40" width="1120" height="440" rx="18" fill="url(#bg)"/>
+  <circle cx="86" cy="82" r="8" fill="#ef4444"/>
+  <circle cx="112" cy="82" r="8" fill="#f59e0b"/>
+  <circle cx="138" cy="82" r="8" fill="#22c55e"/>
+  <text x="170" y="87" font-family="Menlo, Monaco, Consolas, monospace" font-size="20" fill="#cbd5e1">opsmeter-integration-examples</text>
+
+  <text x="80" y="150" font-family="Menlo, Monaco, Consolas, monospace" font-size="26" fill="#f8fafc">$ export OPSMETER_API_KEY="..."</text>
+  <text x="80" y="195" font-family="Menlo, Monaco, Consolas, monospace" font-size="26" fill="#f8fafc">$ node examples/node/index.mjs --provider openai --retry</text>
+
+  <text x="80" y="270" font-family="Menlo, Monaco, Consolas, monospace" font-size="24" fill="#93c5fd">Business call completed.</text>
+  <text x="80" y="310" font-family="Menlo, Monaco, Consolas, monospace" font-size="24" fill="#93c5fd">Telemetry dispatched (non-blocking).</text>
+  <text x="80" y="350" font-family="Menlo, Monaco, Consolas, monospace" font-size="24" fill="#86efac">Ingest response: 200 ok=true planTier=Free warnings=0</text>
+  <text x="80" y="390" font-family="Menlo, Monaco, Consolas, monospace" font-size="24" fill="#fcd34d">Retry with same externalRequestId sent.</text>
+</svg>

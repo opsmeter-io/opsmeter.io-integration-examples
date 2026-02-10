@@ -1,0 +1,16 @@
+{
+  "externalRequestId": "ext_339d2ac074f5ebd702ad95f2",
+  "provider": "anthropic",
+  "model": "claude-3-5-sonnet-20241022",
+  "promptVersion": "support_reply_v2",
+  "endpointTag": "support.reply",
+  "inputTokens": 480,
+  "outputTokens": 210,
+  "totalTokens": 690,
+  "latencyMs": 1360,
+  "status": "success",
+  "errorCode": null,
+  "userId": null,
+  "dataMode": "test",
+  "environment": "staging"
+}

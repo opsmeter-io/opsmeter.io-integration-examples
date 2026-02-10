@@ -1,0 +1,16 @@
+{
+  "externalRequestId": "ext_d6d2e4e3ea72d9f95fdb5e2c",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "promptVersion": "summary_v3",
+  "endpointTag": "checkout.ai_summary",
+  "inputTokens": 120,
+  "outputTokens": 45,
+  "totalTokens": 165,
+  "latencyMs": 820,
+  "status": "success",
+  "errorCode": null,
+  "userId": null,
+  "dataMode": "real",
+  "environment": "prod"
+}

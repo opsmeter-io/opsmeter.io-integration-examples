@@ -1,0 +1,16 @@
+{
+  "externalRequestId": "ext_d7c1d0840d54dd8cb5df79a8",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "promptVersion": "demo_flow_v1",
+  "endpointTag": "demo.preview",
+  "inputTokens": 90,
+  "outputTokens": 30,
+  "totalTokens": 120,
+  "latencyMs": 450,
+  "status": "success",
+  "errorCode": null,
+  "userId": null,
+  "dataMode": "demo",
+  "environment": "dev"
+}

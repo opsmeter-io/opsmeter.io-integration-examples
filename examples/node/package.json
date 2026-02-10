@@ -1,0 +1,10 @@
+{
+  "name": "@opsmeter/integration-node-example",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "node --check index.mjs && node --check telemetry.mjs && node --check tests/node.test.mjs",
+    "test": "node --test tests/node.test.mjs"
+  }
+}
