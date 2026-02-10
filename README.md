@@ -11,6 +11,8 @@ Working examples for sending telemetry to `POST /v1/ingest/llm-request` in:
 - Node.js (`examples/node`)
 - Python (`examples/python`)
 
+This repo is optimized for teams implementing **LLM cost tracking**, **OpenAI usage monitoring**, **Anthropic usage telemetry**, and **AI inference cost control** with a consistent request schema.
+
 ## Quickstart (60s)
 
 1) Clone and set your API key.

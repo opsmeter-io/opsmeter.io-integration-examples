@@ -1,18 +1,36 @@
 # OS
 .DS_Store
+.DS_Store?
+Thumbs.db
 
 # Node
 node_modules/
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+coverage/
+.npm/
 
 # Python
 __pycache__/
 *.pyc
 .venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
 
 # Dotnet
 **/bin/
 **/obj/
+*.user
+*.suo
+*.nupkg
+TestResults/
 
 # Env
 .env

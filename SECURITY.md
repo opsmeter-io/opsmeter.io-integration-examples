@@ -4,7 +4,7 @@
 
 Please report security issues to:
 
-- security@opsmeter.io
+- info@opsmeter.io
 
 Include:
 - Steps to reproduce
