@@ -1,8 +1,8 @@
 # Opsmeter Integration Examples
 
-[![Build](https://github.com/opsmeter/integration-examples/actions/workflows/ci.yml/badge.svg)](https://github.com/opsmeter/integration-examples/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/opsmeter/integration-examples)](https://github.com/opsmeter/integration-examples/releases)
-[![License](https://img.shields.io/github/license/opsmeter/integration-examples)](./LICENSE)
+[![Build](https://github.com/opsmeter/opsmeter-integration-examples/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/opsmeter/opsmeter-integration-examples/actions/workflows/ci.yml)
+[![Version](https://img.shields.io/github/v/tag/opsmeter/opsmeter-integration-examples)](https://github.com/opsmeter/opsmeter-integration-examples/tags)
+[![License](https://img.shields.io/github/license/opsmeter/opsmeter-integration-examples)](https://github.com/opsmeter/opsmeter-integration-examples/blob/master/LICENSE)
 
 > **Provider changes, Opsmeter payload stays the same.**
 
@@ -18,8 +18,8 @@ This repo is optimized for teams implementing **LLM cost tracking**, **OpenAI us
 1) Clone and set your API key.
 
 ```bash
-git clone https://github.com/opsmeter/integration-examples.git
-cd integration-examples
+git clone https://github.com/opsmeter/opsmeter-integration-examples.git
+cd opsmeter-integration-examples
 export OPSMETER_API_KEY="<YOUR_WORKSPACE_PRIMARY_API_KEY>"
 ```
 
@@ -130,7 +130,7 @@ Use this exact label when linking from the main product:
 
 Target URL:
 
-`https://github.com/opsmeter/integration-examples`
+`https://github.com/opsmeter/opsmeter-integration-examples`
 
 ## Release
 
