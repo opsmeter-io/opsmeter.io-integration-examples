@@ -13,6 +13,9 @@ Working examples for sending telemetry to `POST /v1/ingest/llm-request` in:
 
 This repo is optimized for teams implementing **LLM cost tracking**, **OpenAI usage monitoring**, **Anthropic usage telemetry**, and **AI inference cost control** with a consistent request schema.
 
+Opsmeter product site: [https://opsmeter.io](https://opsmeter.io)  
+Opsmeter API base: [https://api.opsmeter.io](https://api.opsmeter.io)
+
 ## Quickstart (60s)
 
 1) Clone and set your API key.
