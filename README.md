@@ -16,6 +16,27 @@ This repo is optimized for teams implementing **LLM cost tracking**, **OpenAI us
 Opsmeter product site: [https://opsmeter.io](https://opsmeter.io)  
 Opsmeter API base: [https://api.opsmeter.io](https://api.opsmeter.io)
 
+## What this repo solves
+
+- **No-proxy telemetry:** keep your provider call path untouched, send attribution metadata after each LLM call.
+- **Retry-safe ingestion:** reuse `externalRequestId` on retries to prevent duplicate request rows.
+- **Cost attribution dimensions:** keep `endpointTag` and `promptVersion` consistent for feature-level and version-level analysis.
+
+## Table of contents
+
+- [Quickstart (60s)](#quickstart-60s)
+- [Payload contract (shared)](#payload-contract-shared)
+- [Allowed values](#allowed-values)
+- [Recommended combinations](#recommended-combinations)
+- [Architecture](#architecture)
+- [Quick visual](#quick-visual)
+- [Examples](#examples)
+- [Common mistakes](#common-mistakes)
+- [CI / Quality gates](#ci--quality-gates)
+- [Product linking text (for docs/pricing/landing)](#product-linking-text-for-docspricinglanding)
+- [Release](#release)
+- [SEO and discoverability notes](#seo-and-discoverability-notes)
+
 ## Quickstart (60s)
 
 1) Clone and set your API key.
