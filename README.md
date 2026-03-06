@@ -135,11 +135,14 @@ flowchart LR
 
 ## n8n templates
 
+These templates are for **Opsmeter n8n integration** with workspace status branching, budget warning automation, and telemetry paused handling.
+
 Path: `./n8n`
 
 - `workspace-status-check.json`: polls `GET /v1/diagnostics/workspace-status` and branches by plan/budget booleans.
 - `budget-warning-to-slack.json`: scheduled budget status check with Slack notification path.
 - `openai-to-opsmeter-ingest.json`: provider call + usage mapping + ingest + 402 plan-limit branch.
+- Import and setup guide: [`n8n/README.md`](./n8n/README.md)
 
 ## Common mistakes
 
