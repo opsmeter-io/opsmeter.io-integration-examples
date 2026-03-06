@@ -1,0 +1,190 @@
+{
+  "name": "Opsmeter Budget Warning to Slack",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 15
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.opsmeter.io/v1/diagnostics/workspace-status",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "={{$env.OPSMETER_API_KEY}}"
+            }
+          ]
+        }
+      },
+      "id": "fetch-workspace-status",
+      "name": "Fetch Workspace Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        460,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2
+          },
+          "combinator": "or",
+          "conditions": [
+            {
+              "id": "budget-warning",
+              "leftValue": "={{$json.isBudgetWarning}}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true"
+              },
+              "rightValue": ""
+            },
+            {
+              "id": "budget-exceeded",
+              "leftValue": "={{$json.isBudgetExceeded}}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true"
+              },
+              "rightValue": ""
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "if-budget-alert",
+      "name": "If Budget Alert",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        700,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "alert-title",
+              "name": "title",
+              "type": "string",
+              "value": "Opsmeter budget signal"
+            },
+            {
+              "id": "alert-body",
+              "name": "text",
+              "type": "string",
+              "value": "={{$json.isBudgetExceeded ? \"Budget exceeded\" : \"Budget warning\"}} | Daily: {{$json.budget.daily.currentSpendUsd}} | Monthly: {{$json.budget.monthly.currentSpendUsd}} | Severity: {{$json.severity}}"
+            }
+          ]
+        }
+      },
+      "id": "prepare-message",
+      "name": "Prepare Message",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        940,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "post",
+        "channel": "={{$env.SLACK_CHANNEL_ID}}",
+        "text": "={{$json.text}}"
+      },
+      "id": "post-to-slack",
+      "name": "Post To Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2,
+      "position": [
+        1180,
+        260
+      ],
+      "credentials": {
+        "slackApi": {
+          "id": "replace-with-your-credential-id",
+          "name": "Slack account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Fetch Workspace Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Workspace Status": {
+      "main": [
+        [
+          {
+            "node": "If Budget Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Budget Alert": {
+      "main": [
+        [
+          {
+            "node": "Prepare Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Prepare Message": {
+      "main": [
+        [
+          {
+            "node": "Post To Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "72d8f739-8358-4f20-a86f-fab9f9050f42",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  }
+}

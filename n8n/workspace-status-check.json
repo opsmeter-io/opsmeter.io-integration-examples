@@ -1,0 +1,191 @@
+{
+  "name": "Opsmeter Workspace Status Check",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.opsmeter.io/v1/diagnostics/workspace-status",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "={{$env.OPSMETER_API_KEY}}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": false
+            }
+          }
+        }
+      },
+      "id": "fetch-workspace-status",
+      "name": "Fetch Workspace Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2
+          },
+          "combinator": "or",
+          "conditions": [
+            {
+              "id": "plan-limit",
+              "leftValue": "={{$json.isPlanLimitReached}}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true"
+              },
+              "rightValue": ""
+            },
+            {
+              "id": "budget-exceeded",
+              "leftValue": "={{$json.isBudgetExceeded}}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true"
+              },
+              "rightValue": ""
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "if-critical",
+      "name": "If Critical",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "severity",
+              "name": "severity",
+              "type": "string",
+              "value": "={{$json.severity}}"
+            },
+            {
+              "id": "message",
+              "name": "message",
+              "type": "string",
+              "value": "={{$json.telemetryPaused ? \"Telemetry paused (plan limit reached).\" : \"Budget exceeded.\"}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "set-critical-message",
+      "name": "Set Critical Message",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        960,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "severity",
+              "name": "severity",
+              "type": "string",
+              "value": "={{$json.severity}}"
+            },
+            {
+              "id": "message",
+              "name": "message",
+              "type": "string",
+              "value": "={{$json.isBudgetWarning ? \"Budget warning detected.\" : \"Workspace status normal.\"}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "set-noncritical-message",
+      "name": "Set Non-Critical Message",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        960,
+        380
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Fetch Workspace Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Workspace Status": {
+      "main": [
+        [
+          {
+            "node": "If Critical",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Critical": {
+      "main": [
+        [
+          {
+            "node": "Set Critical Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Non-Critical Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "6f2e99d2-b7e3-4f57-99af-d2e00dc90111",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  }
+}

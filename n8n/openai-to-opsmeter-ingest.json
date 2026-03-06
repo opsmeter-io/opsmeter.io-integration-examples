@@ -1,0 +1,262 @@
+{
+  "name": "OpenAI to Opsmeter Ingest",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        200,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/responses",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{$env.OPENAI_API_KEY}}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"gpt-4o-mini\",\n  \"input\": \"Summarize this invoice and list risky line items.\"\n}",
+        "options": {}
+      },
+      "id": "openai-response-call",
+      "name": "OpenAI Response Call",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        420,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const response = $json;\nconst usage = response.usage || {};\nconst inputTokens = usage.input_tokens ?? usage.prompt_tokens ?? 0;\nconst outputTokens = usage.output_tokens ?? usage.completion_tokens ?? 0;\nconst totalTokens = usage.total_tokens ?? (inputTokens + outputTokens);\n\nreturn [{\n  json: {\n    externalRequestId: $execution.id,\n    provider: 'openai',\n    model: response.model || 'gpt-4o-mini',\n    promptVersion: 'n8n_demo_v1',\n    endpointTag: 'n8n.workflow.summary',\n    inputTokens,\n    outputTokens,\n    totalTokens,\n    latencyMs: 0,\n    status: 'success',\n    dataMode: 'real',\n    environment: 'prod'\n  }\n}];"
+      },
+      "id": "map-usage-to-ingest-payload",
+      "name": "Map Usage To Ingest Payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.opsmeter.io/v1/ingest/llm-request",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "={{$env.OPSMETER_API_KEY}}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{$json}}",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "id": "send-ingest",
+      "name": "Send Ingest",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        920,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "status-402",
+              "leftValue": "={{$json.statusCode}}",
+              "operator": {
+                "type": "number",
+                "operation": "equal"
+              },
+              "rightValue": 402
+            },
+            {
+              "id": "reason-plan-limit",
+              "leftValue": "={{$json.body.reason}}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "rightValue": "plan_limit_reached"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "if-plan-limit-branch",
+      "name": "If Plan Limit Branch",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1180,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "status",
+              "name": "status",
+              "type": "string",
+              "value": "telemetry_paused"
+            },
+            {
+              "id": "note",
+              "name": "note",
+              "type": "string",
+              "value": "Telemetry paused by plan limit. Provider calls continue."
+            }
+          ]
+        }
+      },
+      "id": "set-plan-limit-note",
+      "name": "Set Plan Limit Note",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1420,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "status",
+              "name": "status",
+              "type": "string",
+              "value": "telemetry_ok"
+            },
+            {
+              "id": "note",
+              "name": "note",
+              "type": "string",
+              "value": "Telemetry accepted."
+            }
+          ]
+        }
+      },
+      "id": "set-ok-note",
+      "name": "Set OK Note",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1420,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Response Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Response Call": {
+      "main": [
+        [
+          {
+            "node": "Map Usage To Ingest Payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map Usage To Ingest Payload": {
+      "main": [
+        [
+          {
+            "node": "Send Ingest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Ingest": {
+      "main": [
+        [
+          {
+            "node": "If Plan Limit Branch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Plan Limit Branch": {
+      "main": [
+        [
+          {
+            "node": "Set Plan Limit Note",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set OK Note",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "8b6d3cc0-13a6-4df5-97ca-b0f350740f78",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  }
+}

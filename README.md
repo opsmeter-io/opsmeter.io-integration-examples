@@ -31,6 +31,7 @@ Opsmeter API base: [https://api.opsmeter.io](https://api.opsmeter.io)
 - [Architecture](#architecture)
 - [Quick visual](#quick-visual)
 - [Examples](#examples)
+- [n8n templates](#n8n-templates)
 - [Common mistakes](#common-mistakes)
 - [CI / Quality gates](#ci--quality-gates)
 - [Product linking text (for docs/pricing/landing)](#product-linking-text-for-docspricinglanding)
@@ -131,6 +132,14 @@ flowchart LR
 - [Node example](./examples/node/README.md)
 - [Python example](./examples/python/README.md)
 - [Dotnet example](./examples/dotnet/README.md)
+
+## n8n templates
+
+Path: `./n8n`
+
+- `workspace-status-check.json`: polls `GET /v1/diagnostics/workspace-status` and branches by plan/budget booleans.
+- `budget-warning-to-slack.json`: scheduled budget status check with Slack notification path.
+- `openai-to-opsmeter-ingest.json`: provider call + usage mapping + ingest + 402 plan-limit branch.
 
 ## Common mistakes
 
