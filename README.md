@@ -1,8 +1,10 @@
 # Opsmeter Integration Examples
 
-[![Build](https://github.com/opsmeter/opsmeter-integration-examples/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/opsmeter/opsmeter-integration-examples/actions/workflows/ci.yml)
-[![Version](https://img.shields.io/github/v/tag/opsmeter/opsmeter-integration-examples)](https://github.com/opsmeter/opsmeter-integration-examples/tags)
-[![License](https://img.shields.io/github/license/opsmeter/opsmeter-integration-examples)](https://github.com/opsmeter/opsmeter-integration-examples/blob/master/LICENSE)
+[![Build](https://github.com/opsmeter-io/opsmeter-integration-examples/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/opsmeter-io/opsmeter-integration-examples/actions/workflows/ci.yml)
+[![Version](https://img.shields.io/github/v/tag/opsmeter-io/opsmeter-integration-examples)](https://github.com/opsmeter-io/opsmeter-integration-examples/tags)
+[![License](https://img.shields.io/github/license/opsmeter-io/opsmeter-integration-examples)](https://github.com/opsmeter-io/opsmeter-integration-examples/blob/master/LICENSE)
+[![Node SDK](https://img.shields.io/npm/v/%40opsmeter%2Fnode?label=Node%20SDK)](https://www.npmjs.com/package/@opsmeter/node)
+[![Python SDK](https://img.shields.io/pypi/v/opsmeter-sdk?label=Python%20SDK)](https://pypi.org/project/opsmeter-sdk/)
 
 > **Provider changes, Opsmeter payload stays the same.**
 
@@ -16,6 +18,9 @@ This repo is optimized for teams implementing **LLM cost tracking**, **OpenAI us
 Opsmeter product site: [https://opsmeter.io](https://opsmeter.io)  
 Opsmeter API base: [https://api.opsmeter.io](https://api.opsmeter.io)
 Provider + catalog model names: [https://opsmeter.io/docs/catalog](https://opsmeter.io/docs/catalog)
+Official SDK package identities for opsmeter.io:
+- Node (npm): [@opsmeter/node](https://www.npmjs.com/package/@opsmeter/node)
+- Python (PyPI): [opsmeter-sdk](https://pypi.org/project/opsmeter-sdk/)
 
 Current provider support in examples: **OpenAI** and **Anthropic** only.
 
@@ -33,10 +38,37 @@ This repository targets **LLM telemetry quickstart**, **OpenAI cost tracking exa
 - **SDK auto-instrumentation (preview path):** moved to dedicated SDK repositories.
 - Direct ingest docs stay valid; SDK docs are additive and do not replace existing integration docs.
 
+## Official package identity (opsmeter.io)
+
+- Official domain and product identity: [https://opsmeter.io](https://opsmeter.io)
+- Official Node package name: `@opsmeter/node`
+- Official Python package name: `opsmeter-sdk`
+- Model catalog for both SDKs: [https://opsmeter.io/docs/catalog](https://opsmeter.io/docs/catalog)
+
+## Package rename strategy
+
+Planned target names to align with domain identity:
+
+- Node: `@opsmeter.io/node`
+- Python: `opsmeter-io-sdk`
+
+Migration policy:
+
+1. Publish new names with identical API first.
+2. Keep old names (`@opsmeter/node`, `opsmeter-sdk`) during transition.
+3. Mark old names as deprecated with direct migration instructions.
+4. Switch docs/examples default install commands to new names after first stable releases.
+
+Detailed rollout checklist:
+
+- [PACKAGE_RENAME_STRATEGY.md](./PACKAGE_RENAME_STRATEGY.md)
+
 ## Table of contents
 
 - [Quickstart (60s)](#quickstart-60s)
 - [Documentation paths](#documentation-paths)
+- [Official package identity (opsmeter.io)](#official-package-identity-opsmeterio)
+- [Package rename strategy](#package-rename-strategy)
 - [Payload contract (shared)](#payload-contract-shared)
 - [Allowed values](#allowed-values)
 - [Recommended combinations](#recommended-combinations)
@@ -57,7 +89,7 @@ This repository targets **LLM telemetry quickstart**, **OpenAI cost tracking exa
 1) Clone and set your API key.
 
 ```bash
-git clone https://github.com/opsmeter/opsmeter-integration-examples.git
+git clone https://github.com/opsmeter-io/opsmeter-integration-examples.git
 cd opsmeter-integration-examples
 export OPSMETER_API_KEY="<YOUR_WORKSPACE_PRIMARY_API_KEY>"
 export OPSMETER_API_BASE_URL="https://api.opsmeter.io"
@@ -157,21 +189,26 @@ flowchart LR
 - Includes explicit send scenarios for both OpenAI and Anthropic.
 - **With SDK (preview):** usage examples in this repo, SDK packages in dedicated repos:
   - Includes OpenAI + Anthropic capture/send scenarios in language samples.
-  - Node SDK repo: [github.com/opsmeter/opsmeter-node-sdk](https://github.com/opsmeter/opsmeter-node-sdk)
+  - Node SDK repo: [github.com/opsmeter-io/opsmeter-node-sdk](https://github.com/opsmeter-io/opsmeter-node-sdk)
   - Node npm package (published): [npmjs.com/package/@opsmeter/node](https://www.npmjs.com/package/@opsmeter/node)
-  - Python SDK repo: [github.com/opsmeter/opsmeter-python-sdk](https://github.com/opsmeter/opsmeter-python-sdk)
-  - .NET SDK repo: [github.com/opsmeter/opsmeter-dotnet-sdk](https://github.com/opsmeter/opsmeter-dotnet-sdk)
+  - Python SDK repo: [github.com/opsmeter-io/opsmeter-python-sdk](https://github.com/opsmeter-io/opsmeter-python-sdk)
+  - Python package (published): [pypi.org/project/opsmeter-sdk](https://pypi.org/project/opsmeter-sdk/)
+  - .NET SDK repo: [github.com/opsmeter-io/opsmeter-dotnet-sdk](https://github.com/opsmeter-io/opsmeter-dotnet-sdk)
 
 ## SDK preview
 
 Preview SDK contracts and reference implementations are maintained in dedicated repositories:
 
-- Node SDK (repo): [github.com/opsmeter/opsmeter-node-sdk](https://github.com/opsmeter/opsmeter-node-sdk)
+- Node SDK (repo): [github.com/opsmeter-io/opsmeter-node-sdk](https://github.com/opsmeter-io/opsmeter-node-sdk)
 - Node SDK (npm): [npmjs.com/package/@opsmeter/node](https://www.npmjs.com/package/@opsmeter/node)
-- Python SDK (repo): [github.com/opsmeter/opsmeter-python-sdk](https://github.com/opsmeter/opsmeter-python-sdk)
-- Python package: coming soon
-- .NET SDK (repo): [github.com/opsmeter/opsmeter-dotnet-sdk](https://github.com/opsmeter/opsmeter-dotnet-sdk)
+- Python SDK (repo): [github.com/opsmeter-io/opsmeter-python-sdk](https://github.com/opsmeter-io/opsmeter-python-sdk)
+- Python SDK (PyPI): [pypi.org/project/opsmeter-sdk](https://pypi.org/project/opsmeter-sdk/)
+- .NET SDK (repo): [github.com/opsmeter-io/opsmeter-dotnet-sdk](https://github.com/opsmeter-io/opsmeter-dotnet-sdk)
 - .NET package: coming soon
+
+Package name note:
+- Current official names are `@opsmeter/node` and `opsmeter-sdk`.
+- Source-of-truth brand/domain is always [https://opsmeter.io](https://opsmeter.io).
 
 ## n8n templates
 
@@ -209,7 +246,7 @@ Use this exact label when linking from the main product:
 
 Target URL:
 
-`https://github.com/opsmeter/opsmeter-integration-examples`
+`https://github.com/opsmeter-io/opsmeter-integration-examples`
 
 ## Release
 

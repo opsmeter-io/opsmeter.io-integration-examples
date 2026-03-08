@@ -3,6 +3,8 @@
 This sample shows the `init + withContext` model using `@opsmeter/node`.
 Provider/model names are from the catalog: [https://opsmeter.io/docs/catalog](https://opsmeter.io/docs/catalog)
 Supported providers in this sample: **OpenAI** and **Anthropic** only.
+Official package/source of truth: [https://opsmeter.io](https://opsmeter.io)
+Model catalog (required for provider/model names): [https://opsmeter.io/docs/catalog](https://opsmeter.io/docs/catalog)
 
 ## Install
 

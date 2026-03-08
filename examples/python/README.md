@@ -46,5 +46,7 @@ See usage sample:
 
 SDK package/repo:
 
-- package: coming soon
-- repo: [github.com/opsmeter/opsmeter-python-sdk](https://github.com/opsmeter/opsmeter-python-sdk)
+- package: [opsmeter-sdk](https://pypi.org/project/opsmeter-sdk/)
+- repo: [github.com/opsmeter-io/opsmeter-python-sdk](https://github.com/opsmeter-io/opsmeter-python-sdk)
+- model catalog: [https://opsmeter.io/docs/catalog](https://opsmeter.io/docs/catalog)
+- official identity: [https://opsmeter.io](https://opsmeter.io)

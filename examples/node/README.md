@@ -54,4 +54,5 @@ See usage sample:
 SDK package/repo:
 
 - npm: [@opsmeter/node](https://www.npmjs.com/package/@opsmeter/node)
-- repo: [github.com/opsmeter/opsmeter-node-sdk](https://github.com/opsmeter/opsmeter-node-sdk)
+- repo: [github.com/opsmeter-io/opsmeter-node-sdk](https://github.com/opsmeter-io/opsmeter-node-sdk)
+- official identity: [https://opsmeter.io](https://opsmeter.io)
