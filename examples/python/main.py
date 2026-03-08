@@ -7,7 +7,8 @@ from telemetry import build_payload, send_telemetry
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Opsmeter Python ingest example")
-    parser.add_argument("--provider", default="openai")
+    # Provider/model names are in catalog: https://opsmeter.io/docs/catalog
+    parser.add_argument("--provider", default="openai", choices=["openai", "anthropic"])
     parser.add_argument("--model", default="gpt-4o-mini")
     parser.add_argument("--operation-key", default="order:1001")
     parser.add_argument("--data-mode", default="real")

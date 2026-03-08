@@ -15,6 +15,9 @@ This repo is optimized for teams implementing **LLM cost tracking**, **OpenAI us
 
 Opsmeter product site: [https://opsmeter.io](https://opsmeter.io)  
 Opsmeter API base: [https://api.opsmeter.io](https://api.opsmeter.io)
+Provider + catalog model names: [https://opsmeter.io/docs/catalog](https://opsmeter.io/docs/catalog)
+
+Current provider support in examples: **OpenAI** and **Anthropic** only.
 
 ## What this repo solves
 
@@ -22,15 +25,24 @@ Opsmeter API base: [https://api.opsmeter.io](https://api.opsmeter.io)
 - **Retry-safe ingestion:** reuse `externalRequestId` on retries to prevent duplicate request rows.
 - **Cost attribution dimensions:** keep `endpointTag` and `promptVersion` consistent for feature-level and version-level analysis.
 
+## Documentation paths
+
+- **Direct ingest (current production path):** Quickstart + payload contract + language examples under `examples/`.
+- **SDK auto-instrumentation (preview path):** moved to dedicated SDK repositories.
+- Direct ingest docs stay valid; SDK docs are additive and do not replace existing integration docs.
+
 ## Table of contents
 
 - [Quickstart (60s)](#quickstart-60s)
+- [Documentation paths](#documentation-paths)
 - [Payload contract (shared)](#payload-contract-shared)
 - [Allowed values](#allowed-values)
 - [Recommended combinations](#recommended-combinations)
 - [Architecture](#architecture)
 - [Quick visual](#quick-visual)
 - [Examples](#examples)
+- [Example modes](#example-modes)
+- [SDK preview](#sdk-preview)
 - [n8n templates](#n8n-templates)
 - [Common mistakes](#common-mistakes)
 - [CI / Quality gates](#ci--quality-gates)
@@ -52,6 +64,7 @@ export OPSMETER_API_BASE_URL="https://api.opsmeter.io"
 2) Run one stack (Node shown below):
 
 ```bash
+# Provider/model names: https://opsmeter.io/docs/catalog
 node examples/node/index.mjs --provider openai --model gpt-4o-mini --retry
 ```
 
@@ -95,10 +108,13 @@ All examples send this same shape:
 }
 ```
 
+`provider` and `model` values should be selected from the catalog: [https://opsmeter.io/docs/catalog](https://opsmeter.io/docs/catalog)
+
 ### Allowed values
 
 | Field | Allowed | Notes |
 |---|---|---|
+| `provider` | `openai`, `anthropic` | Current support in this repo/examples |
 | `status` | `success`, `error` | Required by API validation |
 | `dataMode` | `real`, `test`, `demo` | Default recommendation: `real` |
 | `environment` | `prod`, `staging`, `dev` | Use real deployment environment |
@@ -129,9 +145,31 @@ flowchart LR
 
 ## Examples
 
-- [Node example](./examples/node/README.md)
-- [Python example](./examples/python/README.md)
-- [Dotnet example](./examples/dotnet/README.md)
+- [Node examples (without SDK + with SDK)](./examples/node/README.md)
+- [Python examples (without SDK + with SDK)](./examples/python/README.md)
+- [Dotnet examples (without SDK + with SDK)](./examples/dotnet/README.md)
+
+### Example modes
+
+- **Without SDK (direct ingest):** existing stable production path in this repo.
+- Includes explicit send scenarios for both OpenAI and Anthropic.
+- **With SDK (preview):** usage examples in this repo, SDK packages in dedicated repos:
+  - Includes OpenAI + Anthropic capture/send scenarios in language samples.
+  - Node SDK repo: [github.com/opsmeter/opsmeter-node-sdk](https://github.com/opsmeter/opsmeter-node-sdk)
+  - Node npm package (published): [npmjs.com/package/@opsmeter/node](https://www.npmjs.com/package/@opsmeter/node)
+  - Python SDK repo: [github.com/opsmeter/opsmeter-python-sdk](https://github.com/opsmeter/opsmeter-python-sdk)
+  - .NET SDK repo: [github.com/opsmeter/opsmeter-dotnet-sdk](https://github.com/opsmeter/opsmeter-dotnet-sdk)
+
+## SDK preview
+
+Preview SDK contracts and reference implementations are maintained in dedicated repositories:
+
+- Node SDK (repo): [github.com/opsmeter/opsmeter-node-sdk](https://github.com/opsmeter/opsmeter-node-sdk)
+- Node SDK (npm): [npmjs.com/package/@opsmeter/node](https://www.npmjs.com/package/@opsmeter/node)
+- Python SDK (repo): [github.com/opsmeter/opsmeter-python-sdk](https://github.com/opsmeter/opsmeter-python-sdk)
+- Python package: coming soon
+- .NET SDK (repo): [github.com/opsmeter/opsmeter-dotnet-sdk](https://github.com/opsmeter/opsmeter-dotnet-sdk)
+- .NET package: coming soon
 
 ## n8n templates
 

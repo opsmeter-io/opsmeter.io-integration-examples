@@ -74,6 +74,7 @@ internal sealed record CliOptions(
 {
     public static CliOptions Parse(string[] args)
     {
+        // Provider/model names are in catalog: https://opsmeter.io/docs/catalog
         var provider = "openai";
         var model = "gpt-4o-mini";
         var operationKey = "order:1001";
@@ -104,6 +105,12 @@ internal sealed record CliOptions(
                     retry = true;
                     break;
             }
+        }
+
+        provider = provider.ToLowerInvariant();
+        if (provider is not ("openai" or "anthropic"))
+        {
+            throw new ArgumentException("Supported providers: openai, anthropic");
         }
 
         return new CliOptions(provider, model, operationKey, dataMode, environment, retry);

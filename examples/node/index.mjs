@@ -2,6 +2,7 @@ import { buildPayload, sendTelemetry } from './telemetry.mjs';
 
 function parseArgs(argv) {
   const options = {
+    // Provider/model names are in catalog: https://opsmeter.io/docs/catalog
     provider: 'openai',
     model: 'gpt-4o-mini',
     operationKey: 'order:1001',
@@ -30,6 +31,12 @@ function parseArgs(argv) {
     } else if (arg === '--retry') {
       options.retry = true;
     }
+  }
+
+  const supportedProviders = new Set(['openai', 'anthropic']);
+  options.provider = String(options.provider || '').toLowerCase();
+  if (!supportedProviders.has(options.provider)) {
+    throw new Error('Supported providers: openai, anthropic');
   }
 
   return options;
