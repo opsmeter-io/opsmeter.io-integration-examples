@@ -1,6 +1,6 @@
 # Node with SDK (preview)
 
-This sample shows the `init + withContext` model using `@opsmeter/node`.
+This sample shows the `init + withContext` model using `@opsmeter.io/node`.
 Provider/model names are from the catalog: [https://opsmeter.io/docs/catalog](https://opsmeter.io/docs/catalog)
 Supported providers in this sample: **OpenAI** and **Anthropic** only.
 Official package/source of truth: [https://opsmeter.io](https://opsmeter.io)
@@ -9,7 +9,7 @@ Model catalog (required for provider/model names): [https://opsmeter.io/docs/cat
 ## Install
 
 ```bash
-npm install @opsmeter/node openai @anthropic-ai/sdk
+npm install @opsmeter.io/node openai @anthropic-ai/sdk
 ```
 
 ## Run pattern

@@ -1,4 +1,4 @@
-import * as opsmeter from '@opsmeter/node';
+import * as opsmeter from '@opsmeter.io/node';
 import OpenAI from 'openai';
 import Anthropic from '@anthropic-ai/sdk';
 

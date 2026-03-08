@@ -53,6 +53,6 @@ See usage sample:
 
 SDK package/repo:
 
-- npm: [@opsmeter/node](https://www.npmjs.com/package/@opsmeter/node)
+- npm: [@opsmeter.io/node](https://www.npmjs.com/package/@opsmeter.io/node)
 - repo: [github.com/opsmeter-io/opsmeter.io-node-sdk](https://github.com/opsmeter-io/opsmeter.io-node-sdk)
 - official identity: [https://opsmeter.io](https://opsmeter.io)

@@ -3,8 +3,8 @@
 [![Build](https://github.com/opsmeter-io/opsmeter.io-integration-examples/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/opsmeter-io/opsmeter.io-integration-examples/actions/workflows/ci.yml)
 [![Version](https://img.shields.io/github/v/tag/opsmeter-io/opsmeter.io-integration-examples)](https://github.com/opsmeter-io/opsmeter.io-integration-examples/tags)
 [![License](https://img.shields.io/github/license/opsmeter-io/opsmeter.io-integration-examples)](https://github.com/opsmeter-io/opsmeter.io-integration-examples/blob/master/LICENSE)
-[![Node SDK](https://img.shields.io/npm/v/%40opsmeter%2Fnode?label=Node%20SDK)](https://www.npmjs.com/package/@opsmeter/node)
-[![Python SDK](https://img.shields.io/pypi/v/opsmeter-sdk?label=Python%20SDK)](https://pypi.org/project/opsmeter-sdk/)
+[![Node SDK](https://img.shields.io/npm/v/%40opsmeter.io%2Fnode?label=Node%20SDK)](https://www.npmjs.com/package/@opsmeter.io/node)
+[![Python SDK](https://img.shields.io/pypi/v/opsmeter-io-sdk?label=Python%20SDK)](https://pypi.org/project/opsmeter-io-sdk/)
 
 > **Provider changes, Opsmeter payload stays the same.**
 
@@ -19,8 +19,8 @@ Opsmeter product site: [https://opsmeter.io](https://opsmeter.io)
 Opsmeter API base: [https://api.opsmeter.io](https://api.opsmeter.io)
 Provider + catalog model names: [https://opsmeter.io/docs/catalog](https://opsmeter.io/docs/catalog)
 Official SDK package identities for opsmeter.io:
-- Node (npm): [@opsmeter/node](https://www.npmjs.com/package/@opsmeter/node)
-- Python (PyPI): [opsmeter-sdk](https://pypi.org/project/opsmeter-sdk/)
+- Node (npm): [@opsmeter.io/node](https://www.npmjs.com/package/@opsmeter.io/node)
+- Python (PyPI): [opsmeter-io-sdk](https://pypi.org/project/opsmeter-io-sdk/)
 
 Current provider support in examples: **OpenAI** and **Anthropic** only.
 
@@ -41,8 +41,8 @@ This repository targets **LLM telemetry quickstart**, **OpenAI cost tracking exa
 ## Official package identity (opsmeter.io)
 
 - Official domain and product identity: [https://opsmeter.io](https://opsmeter.io)
-- Official Node package name: `@opsmeter/node`
-- Official Python package name: `opsmeter-sdk`
+- Official Node package name: `@opsmeter.io/node`
+- Official Python package name: `opsmeter-io-sdk`
 - Model catalog for both SDKs: [https://opsmeter.io/docs/catalog](https://opsmeter.io/docs/catalog)
 
 ## Table of contents
@@ -171,9 +171,9 @@ flowchart LR
 - **With SDK (preview):** usage examples in this repo, SDK packages in dedicated repos:
   - Includes OpenAI + Anthropic capture/send scenarios in language samples.
   - Node SDK repo: [github.com/opsmeter-io/opsmeter.io-node-sdk](https://github.com/opsmeter-io/opsmeter.io-node-sdk)
-  - Node npm package (published): [npmjs.com/package/@opsmeter/node](https://www.npmjs.com/package/@opsmeter/node)
+  - Node npm package (published): [npmjs.com/package/@opsmeter.io/node](https://www.npmjs.com/package/@opsmeter.io/node)
   - Python SDK repo: [github.com/opsmeter-io/opsmeter.io-python-sdk](https://github.com/opsmeter-io/opsmeter.io-python-sdk)
-  - Python package (published): [pypi.org/project/opsmeter-sdk](https://pypi.org/project/opsmeter-sdk/)
+  - Python package (published): [pypi.org/project/opsmeter-io-sdk](https://pypi.org/project/opsmeter-io-sdk/)
   - .NET SDK repo: coming soon
 
 ## SDK preview
@@ -181,9 +181,9 @@ flowchart LR
 Preview SDK contracts and reference implementations are maintained in dedicated repositories:
 
 - Node SDK (repo): [github.com/opsmeter-io/opsmeter.io-node-sdk](https://github.com/opsmeter-io/opsmeter.io-node-sdk)
-- Node SDK (npm): [npmjs.com/package/@opsmeter/node](https://www.npmjs.com/package/@opsmeter/node)
+- Node SDK (npm): [npmjs.com/package/@opsmeter.io/node](https://www.npmjs.com/package/@opsmeter.io/node)
 - Python SDK (repo): [github.com/opsmeter-io/opsmeter.io-python-sdk](https://github.com/opsmeter-io/opsmeter.io-python-sdk)
-- Python SDK (PyPI): [pypi.org/project/opsmeter-sdk](https://pypi.org/project/opsmeter-sdk/)
+- Python SDK (PyPI): [pypi.org/project/opsmeter-io-sdk](https://pypi.org/project/opsmeter-io-sdk/)
 - .NET SDK (repo): coming soon
 - .NET package: coming soon
 
