@@ -47,4 +47,4 @@ See usage sample:
 SDK package/repo:
 
 - package: coming soon
-- repo: [github.com/opsmeter-io/opsmeter-dotnet-sdk](https://github.com/opsmeter-io/opsmeter-dotnet-sdk)
+- repo: coming soon
