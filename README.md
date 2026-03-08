@@ -19,6 +19,8 @@ Provider + catalog model names: [https://opsmeter.io/docs/catalog](https://opsme
 
 Current provider support in examples: **OpenAI** and **Anthropic** only.
 
+This repository targets **LLM telemetry quickstart**, **OpenAI cost tracking examples**, **Anthropic integration examples**, and **AI cost observability setup** keywords.
+
 ## What this repo solves
 
 - **No-proxy telemetry:** keep your provider call path untouched, send attribution metadata after each LLM call.
