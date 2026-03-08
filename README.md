@@ -45,30 +45,11 @@ This repository targets **LLM telemetry quickstart**, **OpenAI cost tracking exa
 - Official Python package name: `opsmeter-sdk`
 - Model catalog for both SDKs: [https://opsmeter.io/docs/catalog](https://opsmeter.io/docs/catalog)
 
-## Package rename strategy
-
-Planned target names to align with domain identity:
-
-- Node: `@opsmeter.io/node`
-- Python: `opsmeter-io-sdk`
-
-Migration policy:
-
-1. Publish new names with identical API first.
-2. Keep old names (`@opsmeter/node`, `opsmeter-sdk`) during transition.
-3. Mark old names as deprecated with direct migration instructions.
-4. Switch docs/examples default install commands to new names after first stable releases.
-
-Detailed rollout checklist:
-
-- [PACKAGE_RENAME_STRATEGY.md](./PACKAGE_RENAME_STRATEGY.md)
-
 ## Table of contents
 
 - [Quickstart (60s)](#quickstart-60s)
 - [Documentation paths](#documentation-paths)
 - [Official package identity (opsmeter.io)](#official-package-identity-opsmeterio)
-- [Package rename strategy](#package-rename-strategy)
 - [Payload contract (shared)](#payload-contract-shared)
 - [Allowed values](#allowed-values)
 - [Recommended combinations](#recommended-combinations)
@@ -205,10 +186,6 @@ Preview SDK contracts and reference implementations are maintained in dedicated 
 - Python SDK (PyPI): [pypi.org/project/opsmeter-sdk](https://pypi.org/project/opsmeter-sdk/)
 - .NET SDK (repo): [github.com/opsmeter-io/opsmeter-dotnet-sdk](https://github.com/opsmeter-io/opsmeter-dotnet-sdk)
 - .NET package: coming soon
-
-Package name note:
-- Current official names are `@opsmeter/node` and `opsmeter-sdk`.
-- Source-of-truth brand/domain is always [https://opsmeter.io](https://opsmeter.io).
 
 ## n8n templates
 
