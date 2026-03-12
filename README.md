@@ -57,6 +57,7 @@ This repository targets **LLM telemetry quickstart**, **OpenAI cost tracking exa
 - [Quick visual](#quick-visual)
 - [Examples](#examples)
 - [Example modes](#example-modes)
+- [Launch-ready wedge](#launch-ready-wedge)
 - [SDK preview](#sdk-preview)
 - [n8n templates](#n8n-templates)
 - [Common mistakes](#common-mistakes)
@@ -163,6 +164,17 @@ flowchart LR
 - [Node examples (without SDK + with SDK)](./examples/node/README.md)
 - [Python examples (without SDK + with SDK)](./examples/python/README.md)
 - [Dotnet examples (without SDK + with SDK)](./examples/dotnet/README.md)
+
+## Launch-ready wedge
+
+This is a lighter asset optimized for GitHub discovery, founder distribution, and quick proof-of-value sharing.
+
+- [OpenAI cost tracker example (Node)](./examples/node/openai-cost-tracker/README.md)
+  - Real OpenAI call + usage extraction + direct-ingest telemetry
+  - Best first asset for JavaScript-heavy product teams evaluating AI cost tracking with minimal setup
+- [OpenAI cost tracker example (Python)](./examples/python/openai-cost-tracker/README.md)
+  - Same wedge for Python-heavy AI backends and internal tools
+  - Useful when the evaluation owner is closer to ML or backend workflows
 
 ### Example modes
 

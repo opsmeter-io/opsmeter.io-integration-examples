@@ -34,6 +34,14 @@ OPSMETER_DRY_RUN=1 OPSMETER_API_KEY=dummy python3 examples/python/main.py --retr
 
 More: [`without-sdk/README.md`](./without-sdk/README.md)
 
+### Real provider-call wedge
+
+If you want a more buyer-facing example that calls OpenAI, reads real usage, and sends request-level telemetry to Opsmeter, use:
+
+- [`openai-cost-tracker/README.md`](./openai-cost-tracker/README.md)
+
+This is the better GitHub launch asset when you want the "OpenAI call -> usage -> Opsmeter attribution" flow visible in one place for Python teams.
+
 ## 2) With SDK (preview)
 
 See usage sample:

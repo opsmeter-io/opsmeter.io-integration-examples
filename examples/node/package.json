@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "lint": "node --check index.mjs && node --check telemetry.mjs && node --check tests/node.test.mjs",
+    "lint": "node --check index.mjs && node --check telemetry.mjs && node --check openai-cost-tracker/index.mjs && node --check tests/node.test.mjs",
     "test": "node --test tests/node.test.mjs"
   }
 }
