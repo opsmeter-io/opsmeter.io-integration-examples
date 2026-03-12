@@ -1,24 +1,24 @@
-# OpenAI Cost Tracker Example (Python)
+# Anthropic Cost Tracker Example (Python)
 
 Minimal Python example for one narrow promise:
 
-1. Call OpenAI.
+1. Call Anthropic.
 2. Read token usage from the response.
 3. Send request-level telemetry to Opsmeter with `endpointTag`, `promptVersion`, and optional `tenantId`.
 
-This is the Python version of the provider-specific launch wedge over the same provider-agnostic telemetry pattern used elsewhere in the repo. It is useful when the buyer or evaluator is closer to backend services, internal tools, or ML-flavored Python stacks.
+This is a provider-specific launch wedge for the same provider-agnostic telemetry pattern used elsewhere in the repo.
 
 ## Why this example exists
 
-- Shows a real OpenAI call instead of a synthetic payload-only flow
+- Shows a real Anthropic Messages API call instead of a synthetic payload-only flow
 - Makes the Opsmeter value obvious in one script
 - Demonstrates the minimum metadata needed for attribution
-- Easy to link from docs, compare pages, founder posts, and comments
+- Makes it clear that the provider can change while the Opsmeter payload stays stable
 
 ## What it demonstrates
 
-- OpenAI Responses API call from Python
-- Async-ish fire-and-forget style direct-ingest to `POST /v1/ingest/llm-request`
+- Anthropic Messages API call from Python
+- Fire-and-forget style direct-ingest to `POST /v1/ingest/llm-request`
 - Stable tagging with `endpointTag` and `promptVersion`
 - Optional `tenantId` and `featureTag`
 - Error-path telemetry so failed requests still produce operational context
@@ -32,7 +32,7 @@ This is the Python version of the provider-specific launch wedge over the same p
 ## Quickstart
 
 ```bash
-cd examples/python/openai-cost-tracker
+cd examples/python/anthropic-cost-tracker
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -42,15 +42,15 @@ python3 main.py
 
 Required environment variables:
 
-- `OPENAI_API_KEY`
+- `ANTHROPIC_API_KEY`
 - `OPSMETER_API_KEY`
 
 Optional environment variables:
 
-- `OPENAI_MODEL` default: `gpt-4o-mini`
+- `ANTHROPIC_MODEL` default: `claude-3-5-sonnet-20241022`
 - `OPSMETER_API_BASE_URL` default: `https://api.opsmeter.io`
 - `OPSMETER_ENDPOINT_TAG` default: `support.reply`
-- `OPSMETER_PROMPT_VERSION` default: `support_v1`
+- `OPSMETER_PROMPT_VERSION` default: `support_reply_v2`
 - `OPSMETER_TENANT_ID`
 - `OPSMETER_FEATURE_TAG`
 - `OPSMETER_ENVIRONMENT` default: `prod`
